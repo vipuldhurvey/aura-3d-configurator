@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Aura One, an interactive 3D headphone customizer and prompt-led storefront concept built by Bipul Kumar.">
+    <meta name="theme-color" content="#f3f2ed">
+    <title>Aura One — 3D Headphone Studio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+        }
+      }
+    </script>
+    <script src="script.js" defer></script>
+    <script type="module" src="scene.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to product studio</a>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="Sonder Audio home"><span class="brand-mark" aria-hidden="true">S</span> sonder<span class="brand-period">.</span></a>
+      <nav class="main-nav" aria-label="Main navigation"><a href="#studio">The Studio</a><a href="#details">Details</a><a href="#story">Our approach</a></nav>
+      <button class="bag-button" id="bag-button" type="button" aria-label="Open demo bag"><span aria-hidden="true">⌑</span> Bag <b id="bag-count">0</b></button>
+    </header>
+
+    <main id="main">
+      <section class="product-intro" aria-labelledby="product-title">
+        <div class="product-intro-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> SOUND OBJECTS · SERIES 01</p>
+          <h1 id="product-title">Your sound.<br>Your <em>space.</em></h1>
+          <p class="intro-text">Meet Aura One. A considered listening experience you can shape around the way you move through the day.</p>
+          <a class="text-link" href="#studio">Build your edition <span aria-hidden="true">↓</span></a>
+          <div class="review-line"><span class="review-stars" aria-label="Rated five out of five">★★★★★</span><span>Designed for focus, made for feeling</span></div>
+        </div>
+        <div class="product-intro-note"><span class="note-symbol" aria-hidden="true">✳</span><p>Sound, considered.<br><span>Material, chosen by you.</span></p></div>
+      </section>
+
+      <section class="studio-section" id="studio" aria-labelledby="studio-title">
+        <div class="studio-heading"><div><p class="eyebrow">THE INTERACTIVE PRODUCT STUDIO</p><h2 id="studio-title">Make Aura <em>your own.</em></h2></div><span class="studio-index"><i aria-hidden="true"></i> CONFIGURATOR DEMO</span></div>
+
+        <div class="configurator">
+          <div class="model-stage" id="model-stage" aria-label="Interactive three-dimensional headphone product preview">
+            <div class="stage-topline"><span>01 / AURA ONE</span><span class="stage-drag"><span aria-hidden="true">⤢</span> DRAG OR USE ARROWS</span></div>
+            <div class="stage-glow"></div>
+            <div class="stage-orbit orbit-a"></div><div class="stage-orbit orbit-b"></div>
+            <div class="stage-floor"></div>
+            <div class="fallback-product" id="fallback-product" aria-hidden="true"><div class="fallback-band"></div><div class="fallback-cushion-band"></div><div class="fallback-slider slider-left"></div><div class="fallback-slider slider-right"></div><div class="fallback-cup cup-left"><span></span></div><div class="fallback-cup cup-right"><span></span></div></div>
+            <canvas id="product-canvas" class="product-canvas" aria-label="Rotatable 3D model of Aura One headphones" tabindex="0"></canvas>
+            <div class="stage-controls" role="group" aria-label="Rotate the headphone model"><button type="button" data-rotate="-0.38" aria-label="Rotate model left">↶</button><button type="button" data-rotate="0.38" aria-label="Rotate model right">↷</button></div>
+            <div class="stage-bottomline"><span id="model-status" role="status" aria-live="polite">3D preview loading…</span><span>MODEL · AURA / 01</span></div>
+            <div class="stage-badge"><span>✳</span><b>Made for<br>your rhythm</b></div>
+          </div>
+
+          <aside class="customizer" aria-labelledby="customizer-title">
+            <div class="customizer-top"><span class="step-label">01 <i></i> 03</span><span class="customizer-caption">YOUR EDITION</span></div>
+            <h3 id="customizer-title">Choose your finish</h3>
+            <p class="finish-copy" id="finish-description">Soft-touch graphite with a brushed silver accent.</p>
+            <div class="finish-options" role="group" aria-label="Choose a headphone finish">
+              <button class="finish-option is-selected" type="button" data-finish="graphite" aria-pressed="true"><span class="finish-swatch swatch-graphite"></span><span>Graphite</span></button>
+              <button class="finish-option" type="button" data-finish="sand" aria-pressed="false"><span class="finish-swatch swatch-sand"></span><span>Warm sand</span></button>
+              <button class="finish-option" type="button" data-finish="moss" aria-pressed="false"><span class="finish-swatch swatch-moss"></span><span>Forest moss</span></button>
+            </div>
+            <div class="custom-rule"></div>
+            <div class="ai-stylist-head"><div><span class="ai-icon" aria-hidden="true">✦</span><span class="ai-label">AI STYLE CONCEPT</span></div><span class="demo-label">DEMO</span></div>
+            <p class="stylist-intro">Describe the mood. See the finish change.</p>
+            <div class="prompt-field"><label class="visually-hidden" for="style-prompt">Describe your style idea</label><textarea id="style-prompt" rows="2" maxlength="140" placeholder="e.g. Calm, natural tones for a slow Sunday"></textarea><button id="apply-prompt" type="button" aria-label="Apply style concept"><span aria-hidden="true">↗</span></button></div>
+            <div class="prompt-chips" aria-label="Try a style prompt"><button type="button" data-style-prompt="A calm forest feel, grounded and natural">Calm forest</button><button type="button" data-style-prompt="Warm sand tones, soft and minimal">Soft minimal</button></div>
+            <p class="prompt-status" id="prompt-status" aria-live="polite">Local style concept only — no AI service is connected.</p>
+            <div class="custom-rule"></div>
+            <div class="price-line"><div><span class="price-label">AURA ONE · WIRELESS</span><strong>$249</strong></div><span class="shipping-note"><i aria-hidden="true">✳</i> Ships free</span></div>
+            <button class="add-to-bag" id="add-to-bag" type="button">Add your edition to bag <span aria-hidden="true">↗</span></button>
+            <p class="bag-note">No checkout in this portfolio demo.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="details-section" id="details" aria-labelledby="details-title">
+        <div class="details-heading"><p class="eyebrow">GOOD SOUND, THOUGHT THROUGH</p><h2 id="details-title">Made for the moments<br>you want to <em>keep.</em></h2></div>
+        <div class="detail-cards">
+          <article class="detail-card"><span class="detail-number">01 / MATERIAL</span><span class="detail-icon material-icon" aria-hidden="true">◉</span><h3>Soft-touch finish</h3><p>Thoughtful tones and comfortable materials turn a daily essential into a personal object.</p></article>
+          <article class="detail-card"><span class="detail-number">02 / EXPERIENCE</span><span class="detail-icon orbit-icon" aria-hidden="true">◎</span><h3>Explore in 3D</h3><p>Rotate the model, compare finishes, and get a closer feel for the shape before choosing.</p></article>
+          <article class="detail-card"><span class="detail-number">03 / PERSONALIZE</span><span class="detail-icon prompt-icon" aria-hidden="true">✦</span><h3>Prompt-led concept</h3><p>Describe a mood and watch this demo map the idea to a curated product finish.</p></article>
+        </div>
+      </section>
+
+      <section class="story-section" id="story" aria-labelledby="story-title"><div><p class="eyebrow">A NOTE ON PERSONALIZATION</p><h2 id="story-title">A little technology.<br>A more <em>personal choice.</em></h2></div><div class="story-copy"><p>Aura One is a fictional product studio concept that brings a rotatable 3D model and prompt-led styling together in one shopping flow. The 3D object is assembled in the browser, with no downloaded model files.</p><p>The style prompt uses local keyword rules for this demo. A production experience could connect a secure AI service and real product data through a backend.</p><a href="#studio" class="story-link">Back to the studio <span aria-hidden="true">↗</span></a></div></section>
+    </main>
+
+    <footer class="site-footer"><a class="brand brand-footer" href="#top"><span class="brand-mark" aria-hidden="true">S</span> sonder<span class="brand-period">.</span></a><p>Interactive 3D product concept · Built with HTML, CSS, JavaScript &amp; Three.js</p><span>Portfolio demo by Bipul Kumar · <span id="year">2026</span></span></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
